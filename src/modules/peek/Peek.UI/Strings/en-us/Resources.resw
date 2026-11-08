@@ -233,6 +233,18 @@
     <value>File preview</value>
     <comment>Tooltip of preview when there's no file info available.</comment>
   </data>
+  <data name="Model3DViewer_Name" xml:space="preserve">
+    <value>3D model preview</value>
+    <comment>Accessible name of the interactive 3D model viewer.</comment>
+  </data>
+  <data name="Model3DViewer_Help" xml:space="preserve">
+    <value>Drag or use Shift and arrow keys to rotate. Use arrow keys to pan, plus and minus to zoom, and Home to reset.</value>
+    <comment>Instructions for interacting with a 3D model preview.</comment>
+  </data>
+  <data name="Model3DInstructions.Text" xml:space="preserve">
+    <value>Drag to rotate. Shift + arrows: rotate; arrows: pan; + / -: zoom; Home: reset.</value>
+    <comment>Visible instructions for the 3D model viewer.</comment>
+  </data>
   <data name="PinButton_Tooltip" xml:space="preserve">
     <value>Pin the window to the current size</value>
     <comment>Tooltip for button to pin the Peek window.</comment>

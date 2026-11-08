@@ -12,12 +12,18 @@
       <PRIResource Include="..\Peek.UI\Strings\en-US\Resources.resw" Link="Strings\en-US\Resources.resw">
           <SubType>Designer</SubType>
       </PRIResource>
+      <!-- Three.js r180 and the viewer are embedded so previews work offline. -->
+      <EmbeddedResource Include="Assets\Model3D\**\*">
+          <LogicalName>Model3D\%(RecursiveDir)%(Filename)%(Extension)</LogicalName>
+      </EmbeddedResource>
+      <InternalsVisibleTo Include="PowerToys.Peek.FilePreviewer.UnitTests" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Controls\ArchiveControl.xaml" />
     <None Remove="Controls\AudioControl.xaml" />
     <None Remove="Controls\BrowserControl.xaml" />
     <None Remove="Controls\DriveControl.xaml" />
+    <None Remove="Controls\Model3DControl.xaml" />
     <None Remove="Controls\ShellPreviewHandlerControl.xaml" />
     <None Remove="Controls\SqliteControl.xaml" />
     <None Remove="Controls\SpecialFolderPreview\SpecialFolderInformationalPreviewControl.xaml" />
@@ -73,6 +79,12 @@
 
   <ItemGroup>
     <Page Update="Controls\AudioControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Controls\Model3DControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

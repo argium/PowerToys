@@ -62,6 +62,7 @@ namespace Peek.FilePreviewer
         [NotifyPropertyChangedFor(nameof(ImagePreviewer))]
         [NotifyPropertyChangedFor(nameof(VideoPreviewer))]
         [NotifyPropertyChangedFor(nameof(AudioPreviewer))]
+        [NotifyPropertyChangedFor(nameof(Model3DPreviewer))]
         [NotifyPropertyChangedFor(nameof(BrowserPreviewer))]
         [NotifyPropertyChangedFor(nameof(ArchivePreviewer))]
         [NotifyPropertyChangedFor(nameof(SqlitePreviewer))]
@@ -86,6 +87,7 @@ namespace Peek.FilePreviewer
 
         public void Dispose()
         {
+            Model3DPreview.Dispose();
             _cancellationTokenSource.Dispose();
         }
 
@@ -114,6 +116,8 @@ namespace Peek.FilePreviewer
         public IVideoPreviewer? VideoPreviewer => Previewer as IVideoPreviewer;
 
         public IAudioPreviewer? AudioPreviewer => Previewer as IAudioPreviewer;
+
+        public Model3DPreviewer? Model3DPreviewer => Previewer as Model3DPreviewer;
 
         public IBrowserPreviewer? BrowserPreviewer => Previewer as IBrowserPreviewer;
 
@@ -204,6 +208,11 @@ namespace Peek.FilePreviewer
             return isValidPreview ? Visibility.Visible : Visibility.Collapsed;
         }
 
+        public Visibility IsModel3DPreviewVisible(Model3DPreviewer? previewer, PreviewState? state)
+        {
+            return previewer != null && (state == PreviewState.Loading || state == PreviewState.Loaded) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
         public Visibility IsWarningMessageVisible(IPreviewer? previewer, PreviewState? state)
         {
             var shouldShow = previewer is IVideoPreviewer videoPreviewer && MatchPreviewState(state, PreviewState.Loaded) && !string.IsNullOrEmpty(videoPreviewer.MissingCodecName);
@@ -249,6 +258,7 @@ namespace Peek.FilePreviewer
                 ImagePreview.Visibility = Visibility.Collapsed;
                 VideoPreview.Visibility = Visibility.Collapsed;
                 AudioPreview.Visibility = Visibility.Collapsed;
+                Model3DPreview.Visibility = Visibility.Collapsed;
                 BrowserPreview.Visibility = Visibility.Collapsed;
                 ArchivePreview.Visibility = Visibility.Collapsed;
                 SqlitePreview.Visibility = Visibility.Collapsed;
@@ -316,6 +326,7 @@ namespace Peek.FilePreviewer
             VideoPreview.MediaPlayer.Source = null;
             VideoPreview.Source = null;
             AudioPreview.Source = null;
+            Model3DPreview.Clear();
             ImagePreview.Source = null;
             ArchivePreview.Source = null;
             BrowserPreview.Source = null;

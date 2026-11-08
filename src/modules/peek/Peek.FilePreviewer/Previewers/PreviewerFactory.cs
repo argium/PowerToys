@@ -38,6 +38,10 @@ namespace Peek.FilePreviewer.Previewers
             {
                 return new AudioPreviewer(item);
             }
+            else if (Model3DPreviewer.IsItemSupported(item))
+            {
+                return new Model3DPreviewer(item);
+            }
             else if (WebBrowserPreviewer.IsItemSupported(item))
             {
                 return new WebBrowserPreviewer(item, _previewSettings);
